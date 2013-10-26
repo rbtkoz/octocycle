@@ -1,7 +1,9 @@
 Octocycle::Application.routes.draw do
 
+  devise_for :cycle_users
+
   resources :gets
-  root 'gets#index'
+  root 'welcome#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

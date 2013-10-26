@@ -34,7 +34,6 @@ ActiveRecord::Schema.define(version: 20131026185534) do
   add_index "cycle_users", ["email"], name: "index_cycle_users_on_email", unique: true
   add_index "cycle_users", ["reset_password_token"], name: "index_cycle_users_on_reset_password_token", unique: true
 
-
   create_table "gets", force: true do |t|
     t.float    "latitude"
     t.float    "longitude"
