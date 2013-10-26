@@ -8,6 +8,9 @@
 /.bundle
 Gemfile.lock
 
+#Ignore gemfile build
+Gemfile.lock
+
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
