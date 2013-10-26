@@ -24,7 +24,8 @@ gem 'jquery-rails'
 
 gem 'devise'
 
-gem 'mini_record'
+gem 'paperclip'
+gem 'geocoder'
 
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
