@@ -27,7 +27,6 @@ Octocycle::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-
   # paperclip storage defaults
   config.paperclip_defaults = {
       :storage => :fog, 
