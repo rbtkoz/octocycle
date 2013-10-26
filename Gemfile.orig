@@ -24,8 +24,12 @@ gem 'jquery-rails'
 
 gem 'devise'
 
+<<<<<<< HEAD
+# gem 'mini_record'
+=======
 gem 'paperclip'
 gem 'geocoder'
+>>>>>>> 0cc10e13abb261b506b2ae7005c64eb0ea1fceac
 
 gem 'omniauth'
 
