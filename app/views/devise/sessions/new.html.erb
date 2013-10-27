@@ -12,6 +12,10 @@
   <% end -%>
 
   <div><%= f.submit "Sign in" %></div>
+
+  <div>OR</div>
+	<%= link_to "Sign in with Twitter :)", cycle_user_omniauth_authorize_path(:twitter) %>
+
 <% end %>
 
 <%= render "devise/shared/links" %>

@@ -1,6 +1,11 @@
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
+require "omniauth-twitter"
+
 Devise.setup do |config|
+
+ 
+  config.omniauth :twitter, 'OpblF3LChd6HwNDIqhppbA', 'PfcIX7ZqX1hOpi2YDLZcNB4vBCVrV0OWOjcBssfHyY'
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.

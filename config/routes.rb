@@ -1,6 +1,10 @@
 Octocycle::Application.routes.draw do
 
-  devise_for :cycle_users
+  # get "omniauth_callbacks/twitter"
+  devise_for :cycle_users, :controllers => { :omniauth_callbacks => "cycle_users/omniauth_callbacks"}
+
+  # match '/auth/:provider/callback', to: 'sessions#create', via: 'get'
+  # match '/auth/failure', to: redirect('/'), via: 'get'
 
   resources :gets
   root 'welcome#index'
