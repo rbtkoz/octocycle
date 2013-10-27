@@ -12,14 +12,39 @@
  *= require_tree .
  */
 
-
+@import "defaults";
 
 body {
-	font-family: Helvetica;
-	font-size: 16px;
-	font-weight: bold;
+	.sans;
+	.bold;
+	text-align: center;
 }
 
 input {
 	padding: 10px 50px;
+	.sans;
+	.bold;
+}
+
+#user_login_box {
+	.sans(@small)
+}
+
+#picture {
+	max-width: 80%;
+	margin: 20px 10%;
+	text-align: center;
+}
+#getcamera {
+	display: none;
+}
+
+#getbutton {
+	width: 70%;
+	.sans;
+	.bold;
+	/*margin-left: 15%;*/
+	/*padding: 100px 0;*/
+	line-height: 30px;
+	height: 60px;
 }
