@@ -1,6 +1,13 @@
+<<<<<<< HEAD
+<h1>Welcome to Octocycle</h1>
+<!-- <p>hello</p>
+ -->
+<input type="file" capture="camera" accept="image/*" id="cameraInput">
+=======
 <h1>Octocycle</h1>
 
 <img id="picture" src="http://farm1.staticflickr.com/165/346745382_61f239b697_o.jpg" />
 
 <input id="getcamera" type="file" capture="camera" accept="image/*" id="cameraInput">
 <button id="getbutton" type="button">GET ONE</button>
+>>>>>>> 88ed311a24b44f458db1fff5aec34db505648d68

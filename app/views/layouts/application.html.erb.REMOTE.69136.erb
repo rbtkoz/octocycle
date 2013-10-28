@@ -14,19 +14,17 @@
  -->
    <div id="flashes">
       <%- flash.each do |name, msg| -%>
-      <%= content_tag :div, msg, id: "flash_#{name}" if msg.is_a?(String) %>
+        <%= content_tag :div, msg, id: "flash_#{name}" if msg.is_a?(String) %>
       <%- end -%>
-
-   <p><%= link_to 'Home', root_path %></p>
-   </div>
-      
-      <% if user_signed_in? -%>
-   <div id="user_login_box" >
-   <p>Hello,   <%= current_user.email %></p> |
-      <%= link_to 'My info', edit_user_registration_path %> |
-      <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+</div>
+      <% if cycle_user_signed_in? -%>
+        <div id="user_login_box" >
+          <p>Hello,   <%= current_cycle_user.email %></p>
+            <%= link_to 'My info', edit_cycle_user_registration_path %> |
+            <%= link_to 'Sign out', destroy_cycle_user_session_path, method: :delete %>
+        </div>
       <%end%>
-          
+
 <%= yield %>
 
 </body>
