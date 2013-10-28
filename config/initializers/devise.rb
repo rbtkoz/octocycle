@@ -1,21 +1,16 @@
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
-require "omniauth-twitter"
-
 Devise.setup do |config|
-
- 
-  config.omniauth :twitter, 'OpblF3LChd6HwNDIqhppbA', 'PfcIX7ZqX1hOpi2YDLZcNB4vBCVrV0OWOjcBssfHyY'
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
-  config.secret_key = '2ac8e26021d0782baabacb7f2b63b261d7a827832cc0024865969756bfed79c120dee0eccff2535330c680d11a478d6269ffeb6a928140f9560104bce3a0e293'
+  config.secret_key = '4e356556ec6527333339a8c684b28d2827c9ea463e36d23052049de0086912cd8e7635c21e087ce788568a86d0137eeb2c61dbb4f7bf3d8b9e7299c4832f2047'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+  config.mailer_sender = 'kozovski.a@gmail.com'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -103,7 +98,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 10
 
   # Setup a pepper to generate the encrypted password.
-  # config.pepper = '4e6de08b3421f5e5419b6d89d16e5d9a30e5ef6c611ecb3240d81f8efe21eb27cd8491e29829234d566a203f1f8191c1de6018fab7a45b6e7ff07817fe3b3513'
+  # config.pepper = '90c4835ca5fee59db319bcd02ce83ed1c005049dbb8455540746dc82e63604a4d86440890e33a45d85a8032d3421bd640cb002a1160d14e954c1fab0c101ce6a'
 
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without
@@ -237,7 +232,7 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
-
+    config.omniauth :twitter, "OpblF3LChd6HwNDIqhppbA", "PfcIX7ZqX1hOpi2YDLZcNB4vBCVrV0OWOjcBssfHyY"
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.

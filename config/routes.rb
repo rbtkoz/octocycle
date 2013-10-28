@@ -1,12 +1,11 @@
 Octocycle::Application.routes.draw do
 
-  # get "omniauth_callbacks/twitter"
-  devise_for :cycle_users, :controllers => { :omniauth_callbacks => "cycle_users/omniauth_callbacks"}
-
-  # match '/auth/:provider/callback', to: 'sessions#create', via: 'get'
-  # match '/auth/failure', to: redirect('/'), via: 'get'
-
-  resources :gets
+  devise_for :users, :path_names => { :sign_in => 'login', :sign_out => 'logout',
+      :password => 'secret', :confirmation => 'verification', registration: 'register'},
+      :controllers => {:omniauth_callbacks => 'omniauth_callbacks'}
+    
+  
+  resources :users
   root 'welcome#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

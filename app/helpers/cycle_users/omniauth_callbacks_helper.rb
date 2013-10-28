@@ -1,2 +1,0 @@
-module CycleUsers::OmniauthCallbacksHelper
-end
