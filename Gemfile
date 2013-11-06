@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.0'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# gem 'sqlite3'
 
 # Use SCSS for stylesheets
 # gem 'sass-rails', '~> 4.0.0'
@@ -45,13 +45,24 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-group :development do
+group :development, :test do
 
   gem 'pry'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem  'sqlite3'
+  gem  'dotenv-rails'
+
 end
 
+
+group :production do
+  gem 'rails_12factor'
+  gem 'pg'
+  gem 'unicorn'
+end
+
+ruby '2.0.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
