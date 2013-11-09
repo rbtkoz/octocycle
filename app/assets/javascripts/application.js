@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-fileupload/basic
 //= require underscore-min
 //= require modernizr.custom.08015
 //= require turbolinks
@@ -27,15 +28,25 @@ var Get = {
     geo: {lat: null, lon : null },
     created_at : null,
     updated_at : null,
-    age: function(){ return Date.now() - this.updated_at },
-    sent : 0
+    latitude : null,
+    longitude : null,
+    created_at : null,
+    updated_at : null,
+    user_id : null,
+    image_file_name : null,
+    image_content_type : null,
+    image_file_size : null,
+    image_updated_at : null,
+    age : function(){ return Date.now() - this.updated_at },
+    sent : false
 }
 
 var OC = (function(oc, $, _) {
     oc.settings = {
         initialized: false,
         throttle: true,
-        siteRoot: '/'
+        siteRoot: '/',
+        maxImageSize : 800
     }
     oc.data = {
         w: {
@@ -61,7 +72,6 @@ var OC = (function(oc, $, _) {
         if (oc.settings.initialized) return false;
         $(document).ready(function() {
             oc.modules.run('init');
-            oc.modules.run('juanito');
             if (!Modernizr.touch) oc.modules.run('clickInit');
             if (Modernizr.touch) oc.modules.run('touchInit');
 
@@ -147,7 +157,9 @@ var OC = (function(oc, $, _) {
     	grab : function(event,$pic,$cmr){
             	console.log(event);
 				var files = event.target.files,
-                file;
+                file, resized, img,
+                max = oc.settings.maxImageSize;
+
 
             if (files && files.length > 0) {
                 file = files[0];
@@ -157,10 +169,34 @@ var OC = (function(oc, $, _) {
                 try {
                     // Get window.URL object
                     var URL = window.URL || window.webkitURL;
+                    
                     // Create ObjectURL
-                    var imgURL = URL.createObjectURL(file);
+                    img = document.createElement("img");
+                    img.src = URL.createObjectURL(file);
+
+
+                    var width = img.width;
+                    var height = img.height;
+                     
+                    if (width > height) {
+                      if (width > max) {
+                        height *= max / width;
+                        width = max;
+                      }
+                    } else {
+                      if (height > max) {
+                        width *= max / height;
+                        height = max;
+                      }
+                    }
+                    canvas.width = width;
+                    canvas.height = height;
+                    resized = canvas.getContext("2d");
+                    resized.drawImage(img, 0, 0, width, height);
+
+
                     // Set img src to ObjectURL
-                    $pic.attr("src", imgURL);
+                    $pic.attr("src", resized.toDataURL("image/jpeg") );
                     oc.data.filename = imgURL;
 
                     // Revoke ObjectURL
@@ -206,7 +242,6 @@ var OC = (function(oc, $, _) {
                 oc.fn.calculateSize();
             }
         },
-
         // SECTIONS
         get : {
             init: function() {
@@ -238,30 +273,6 @@ var OC = (function(oc, $, _) {
 
         },
 
-
-        //GENERAL
-
-        keys: {
-            init: function() {
-                if (typeof(key) == "undefined") return false;
-                key('up, pageup', function() {
-                    //on key up
-                    return false;
-                });
-                key('down, pagedown', function() {
-                    // on key down
-                    return false;
-                });
-                key('left', function() {
-                    // on key left
-                    return false;
-                });
-                key('right', function() {
-                    // on key left
-                    return false;
-                });
-            }
-        },
 
         // HELPER TO RUN EACH MODULE
         run: function(group) {

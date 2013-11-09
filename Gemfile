@@ -10,6 +10,13 @@ gem 'sqlite3'
 # Use SCSS for stylesheets
 # gem 'sass-rails', '~> 4.0.0'
 
+# Use Less for stylesheets
+gem 'less-rails'
+gem 'therubyracer' # Dependency for less
+
+# Use Backbone
+# gem "rails-backbone"
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
@@ -24,11 +31,14 @@ gem 'jquery-rails'
 
 gem 'devise'
 
-gem 'paperclip'
+# Geolocation Cross-Code
 gem 'geocoder'
-gem 'less-rails'
 
-gem 'therubyracer' # Less dependency
+
+# Image uploads and management
+gem 'paperclip'
+gem "jquery-fileupload-rails"
+
 
 gem 'omniauth'
 
