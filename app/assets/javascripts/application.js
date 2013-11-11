@@ -12,34 +12,17 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery-fileupload/basic
 //= require underscore-min
 //= require modernizr.custom.08015
+//= require jquery-fileupload
 //= require turbolinks
 //= require_tree .
 
 
-/* Author: Martin Bravo, Base Design. [email] martin@basedesign.com
-   Date: Feb 2013
+/* Author: Martin Bravo.
+   Date: November 2013
 
 */
-
-var Get = {
-    geo: {lat: null, lon : null },
-    created_at : null,
-    updated_at : null,
-    latitude : null,
-    longitude : null,
-    created_at : null,
-    updated_at : null,
-    user_id : null,
-    image_file_name : null,
-    image_content_type : null,
-    image_file_size : null,
-    image_updated_at : null,
-    age : function(){ return Date.now() - this.updated_at },
-    sent : false
-}
 
 var OC = (function(oc, $, _) {
     oc.settings = {
@@ -54,8 +37,7 @@ var OC = (function(oc, $, _) {
             height: 0
         },
         geo : {}, // current geolocation
-        gets : [],
-        files : []
+        gets : []
     }
     oc.cfg = {
         //if you want to set global identifiers
@@ -75,63 +57,10 @@ var OC = (function(oc, $, _) {
             if (!Modernizr.touch) oc.modules.run('clickInit');
             if (Modernizr.touch) oc.modules.run('touchInit');
 
-            $(window).resize(function() {
-                if (oc.settings.throttle && undefined != _) {
-                    _.throttle(function() {
-                        oc.modules.run('resize');
-                    }, 50)();
-                } else {
-                    oc.modules.run('resize');
-                }
-            });
             oc.settings.initialized = true;
         });
 
 
-    }
-
-    oc.fn = {
-        calculateSize: function() {
-            oc.data.w.width = (Modernizr.touch) ? window.innerWidth : $(window).width();
-            oc.data.w.height = (Modernizr.touch) ? window.innerHeight : $(window).height();
-        },
-        isVisible: function(el) {
-            if (!el) return;
-            var top = el.offsetTop,
-                left = el.offsetLeft,
-                width = el.offsetWidth,
-                height = el.offsetHeight;
-            while (el.offsetParent) {
-                el = el.offsetParent;
-                top += el.offsetTop;
-                left += el.offsetLeft;
-            }
-            return (
-            top < (window.pageYOffset + window.innerHeight) && left < (window.pageXOffset + window.innerWidth) && (top + height) > window.pageYOffset && (left + width) > window.pageXOffset);
-        },
-        loadimages: function() {
-            //this assumes there is a non-image object (i.e. figure) with the class .notloaded
-            // with a data-src attribute.
-            // if a data-mobile-src is defined, will be used in mobile devices : )
-            // mobile device is defined as a touch device with a screen width less than 640px
-
-            $('.notloaded').each(function() {
-                var $figure = $(this),
-                    src = (Modernizr.touch && oc.data.w.width < 640 & undefined != $figure.data('mobile-src')) ? 'mobile-src' : "src";
-                $figure.removeClass('notloaded').addClass('loading');
-                var img = new Image();
-                $(img).load(function() {
-                    $(this).hide();
-                    $figure.prepend(this);
-                    $(this).fadeIn('250', function() {
-                        $figure.removeClass('loading');
-                    });
-                }).error(function() {
-                    console.log("loading error!!");
-                }).attr('src', $figure.data(src));
-            });
-        },
-     
     };
 
     oc.geo = {
@@ -200,7 +129,7 @@ var OC = (function(oc, $, _) {
                     oc.data.filename = imgURL;
 
                     // Revoke ObjectURL
-                    // URL.revokeObjectURL(imgURL);
+                    URL.revokeObjectURL(imgURL);
                 }
                 catch (e) {
                     try {
@@ -236,10 +165,6 @@ var OC = (function(oc, $, _) {
         common: {
             init: function() {
                 if ($.hasOwnProperty("address")) $.address.state(oc.settings.siteRoot);
-                oc.fn.calculateSize();
-            },
-            resize: function() {
-                oc.fn.calculateSize();
             }
         },
         // SECTIONS
@@ -251,8 +176,27 @@ var OC = (function(oc, $, _) {
                 	$pic = $("#picture");
                 // init stuff for navigation        
                 $btn.click(function(){
-                	console.log("click");
+                	console.log("turning on camera");
                 	$cmr.trigger("click");
+                });
+
+                $("#getcamera").fileupload({
+                    url: '/gets/new',
+                    formData : {get : {longitude: oc.data.geo.lon, latitude : oc.data.geo.lat }},
+                    imageMaxHeight : 800,
+                    imageMaxWidth : 800,
+                    // Enable image resizing, except for Android and Opera,
+                    // which actually support image resizing, but fail to
+                    // send Blob objects via XHR requests:
+                    disableImageResize: /Android(?!.*Chrome)|Opera/
+                        .test(window.navigator.userAgent),
+                    imageOrientation : true,
+                    imageQuality : 90
+                })
+                .on('fileuploadadd', function (e, data) {
+                    console.log("file being uploaded");
+                    var file = data.files[0];
+                    if (file.preview) $pic.attr('src', file.preview);
                 });
                 $cmr.change(function(event){
                 	oc.camera.grab(event,$pic,$cmr);

@@ -14,7 +14,7 @@ class GetsController < ApplicationController
 
   # GET /gets/new
   def new
-    @get = Get.new
+    @get = Get.new()
   end
 
   # GET /gets/1/edit
