@@ -16,6 +16,7 @@
 //= require modernizr.custom.08015
 //= require turbolinks
 //= require_tree .
+//= require bootstrap
 
 
 /* Author: Martin Bravo, Base Design. [email] martin@basedesign.com

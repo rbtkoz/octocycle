@@ -5,31 +5,48 @@ class GetsController < ApplicationController
   # GET /gets.json
   def index
     @gets = Get.all
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @get }
+    end
   end
 
   # GET /gets/1
   # GET /gets/1.json
   def show
+    @get = Get.find(params[:id])
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @get }
+    end
+    
+
   end
 
   # GET /gets/new
   def new
     @get = Get.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @get }
+    end
   end
 
   # GET /gets/1/edit
   def edit
+    @get = Get.find(params[:id])
   end
 
   # POST /gets
   # POST /gets.json
   def create
-    @get = Get.new(get_params)
+    @get = Get.create(get_params_better)
 
     respond_to do |format|
       if @get.save
         format.html { redirect_to @get, notice: 'Get was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @get }
+        format.json { render json @get, status: :created, location: @get }
       else
         format.html { render action: 'new' }
         format.json { render json: @get.errors, status: :unprocessable_entity }
@@ -37,11 +54,10 @@ class GetsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /gets/1
-  # PATCH/PUT /gets/1.json
+
   def update
     respond_to do |format|
-      if @get.update(get_params)
+      if @get.update(get_params_better)
         format.html { redirect_to @get, notice: 'Get was successfully updated.' }
         format.json { head :no_content }
       else
@@ -71,4 +87,11 @@ class GetsController < ApplicationController
     def get_params
       params[:get]
     end
+
+    def get_params_better
+
+    params.require(:get).permit(:user_id, :img)
+
+    end
+
 end

@@ -1,8 +1,21 @@
 Octocycle::Application.configure do
 
+  config.paperclip_defaults = {
+  :storage => :s3,
+  :s3_credentials => {
+    :bucket => 'octocycle',
+    :access_key_id => 'AKIAI3YC6X4GFDGRS5FQ',
+    :secret_access_key => '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'
+  }
+}
+
   #added because of Devise! Needs to be set to host when going to production!!!
   config.action_mailer.default_url_options = { :host => 'localhost:3000' } 
   # Settings specified here will take precedence over those in config/application.rb.
+ 
+  #Paperclip made me do it
+  Paperclip.options[:command_path] = "/usr/local/bin/"
+
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development

@@ -25,14 +25,18 @@ gem 'jquery-rails'
 gem 'devise'
 
 gem 'paperclip'
+gem 'pg'
 gem 'geocoder'
 gem 'less-rails'
+gem 'fog'
 
 gem 'therubyracer' # Less dependency
 
 gem 'omniauth'
 
 gem 'omniauth-twitter'
+
+gem 'aws-sdk'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
@@ -58,11 +62,11 @@ end
 
 group :production do
   gem 'rails_12factor'
-  gem 'pg'
   gem 'unicorn'
 end
 
 ruby '2.0.0'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

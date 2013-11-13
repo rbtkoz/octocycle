@@ -1,0 +1,16 @@
+<div class="friend" id="<%= friend.id %>">
+  <div class="front">
+    <%= link_to get, class: 'pic-link' do %>
+      <%= image_tag get.img.url(:thumbnail) %>
+    <% end %>
+  </div>
+
+  <div class="back">
+   
+    <div class="actions">
+      <%= link_to 'Show', get %>
+      <%= link_to 'Edit', edit_get_path(get) %>
+      <%= link_to 'Delete', get, confirm: 'Are you sure you want to lose a friend?', method: :delete, class: 'destroy' %>
+    </div>
+  </div>
+</div>
