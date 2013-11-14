@@ -17,6 +17,8 @@
 //= require turbolinks
 //= require_tree .
 //= require bootstrap
+//= require underscore
+//= require gmaps/google
 
 
 /* Author: Martin Bravo, Base Design. [email] martin@basedesign.com

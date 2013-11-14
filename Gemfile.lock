@@ -76,6 +76,7 @@ GEM
       ruby-hmac
     formatador (0.2.4)
     geocoder (1.1.8)
+    gmaps4rails (2.0.5)
     hashie (2.0.5)
     hike (1.2.3)
     i18n (0.6.5)
@@ -206,6 +207,7 @@ DEPENDENCIES
   dotenv-rails
   fog
   geocoder
+  gmaps4rails
   jbuilder (~> 1.2)
   jquery-rails
   less-rails

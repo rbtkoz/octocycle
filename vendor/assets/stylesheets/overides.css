@@ -1,0 +1,47 @@
+#mapcanvas {
+    width: 100px;
+    height: 100px;
+ 	position: absolute;
+    top:300px;
+    bottom:0;
+    left: 0;
+    right: 0;
+
+    margin: auto;
+    padding:100px;
+    opacity:0.9;
+    border: dotted 7px black;
+}
+
+html { 
+  background: url(http://25.media.tumblr.com/tumblr_m7td6teI1d1rnflwfo1_500.gif) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+
+h1{
+	color:dark gray;
+	-webkit-text-stroke-width: 1px;
+   -webkit-text-stroke-color: green;
+   opacity:0.8;
+
+}
+
+
+
+h2 {
+  animation: 1 blink 1s step-end infinite;
+
+
+@keyframes blink {
+  0% {background-color: blue}
+  50% {background-color: black}
+
+}
+}
+body{
+  opacity:0.9;
+}

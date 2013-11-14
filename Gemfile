@@ -29,6 +29,7 @@ gem 'pg'
 gem 'geocoder'
 gem 'less-rails'
 gem 'fog'
+gem 'gmaps4rails'
 
 gem 'therubyracer' # Less dependency
 

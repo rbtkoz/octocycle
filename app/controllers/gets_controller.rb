@@ -5,6 +5,10 @@ class GetsController < ApplicationController
   # GET /gets.json
   def index
     @gets = Get.all
+    # @hash = Gmaps4rails.build_markers(@gets) do |user, marker|
+    #   marker.lat gets.latitude
+    #   marker.lng gets.longitude
+    # end 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @get }
@@ -15,6 +19,7 @@ class GetsController < ApplicationController
   # GET /gets/1.json
   def show
     @get = Get.find(params[:id])
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @get }
@@ -25,6 +30,8 @@ class GetsController < ApplicationController
 
   # GET /gets/new
   def new
+
+    
     @get = Get.new
 
     respond_to do |format|
@@ -90,7 +97,7 @@ class GetsController < ApplicationController
 
     def get_params_better
 
-    params.require(:get).permit(:user_id, :img)
+    params.require(:get).permit(:user_id,:img)
 
     end
 
