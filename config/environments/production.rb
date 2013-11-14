@@ -6,15 +6,23 @@ Octocycle::Application.configure do
 
   #Paperclip made me do it
 
-
-config.paperclip_defaults = {
+  config.paperclip_defaults = {
   :storage => :s3,
   :s3_credentials => {
-    :bucket => ENV['S3_BUCKET_NAME'],
-    :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
-    :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+    :bucket => 'octocycle',
+    :access_key_id => 'AKIAI3YC6X4GFDGRS5FQ',
+    :secret_access_key => '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'
   }
 }
+
+# config.paperclip_defaults = {
+#   :storage => :s3,
+#   :s3_credentials => {
+#     :bucket => ENV['S3_BUCKET_NAME'],
+#     :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+#     :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+#   }
+# }
 
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both thread web servers
