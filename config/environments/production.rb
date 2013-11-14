@@ -11,9 +11,7 @@ Octocycle::Application.configure do
     :bucket => 'octocycle',
     :access_key_id => 'AKIAI3YC6X4GFDGRS5FQ',
     :secret_access_key => '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'
-    # config/initializers/paperclip.rb 
-    Paperclip::Attachment.default_options[:url] = ':s3_domain_url'
-    Paperclip::Attachment.default_options[:path] = '/:class/:attachment/:id_partition/:style/:filename'
+    
   }
 }
 
